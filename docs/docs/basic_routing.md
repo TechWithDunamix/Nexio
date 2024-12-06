@@ -1,10 +1,10 @@
 ## Basic routing
 
 ##### What is a Route?
-<div style="border: 2px solid orange; padding: 10px; background-color: #f4f4f4;">
-A route is like a map that tells your app what to do when someone visits a specific web address (like /users or /products). It listens for certain HTTP methods (like GET, POST) and then runs specific code (called handlers) to respond to the request.
 
-</div>
+`A route is like a map that tells your app what to do when someone visits a specific web address (like /users or /products). It listens for certain HTTP methods (like GET, POST) and then runs specific code (called handlers) to respond to the request.`
+
+
 
 
 Routing is basically figuring out how your app responds when a client hits a specific endpoint, which is a URI (or path) paired with an HTTP method (like GET, POST, etc.).

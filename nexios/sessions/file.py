@@ -13,7 +13,7 @@ class FileSessionManager(BaseSessionInterface):
         self.session_file_path = os.path.join(self.config.SESSION_FILE_STORAGE_PATH or "sessions", f"{session_key}.json")
         
         # Ensure the session storage directory exists
-        os.makedirs(self.config.SESSION_FILE_STORAGE_PATH or "sessions", exist_ok=True)
+        os.makedirs(self.config.SESSION_FILE_STORAGE_PATH or "sessions_dir", exist_ok=True)
 
     def _load_session_data(self) -> Optional[Dict[str, Any]]:
         """Load session data from the file."""

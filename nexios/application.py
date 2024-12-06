@@ -166,6 +166,30 @@ class NexioApp:
        
         self.routes.append(route)
 
+    def get(self, path: str) -> Callable:
+        """GET method decorator"""
+        return self.route(path, methods=["get"])
+
+    def post(self, path: str) -> Callable:
+        """POST method decorator"""
+        return self.route(path, methods=["post"])
+
+    def put(self, path: str) -> Callable:
+        """PUT method decorator"""
+        return self.route(path, methods=["put"])
+
+    def delete(self, path: str) -> Callable:
+        """DELETE method decorator"""
+        return self.route(path, methods=["delete"])
+
+    def patch(self, path: str) -> Callable:
+        """PATCH method decorator"""
+        return self.route(path, methods=["patch"])
+
+    def options(self, path: str) -> Callable:
+        """OPTIONS method decorator"""
+        return self.route(path, methods=["options"])
+    
     def add_middleware(self, middleware: Callable) -> None:
         """Add middleware to the application"""
         if callable(middleware):

@@ -6,9 +6,9 @@ class BaseConfig:
 
     debug :bool  = False
 
-    middlewares :list = [] 
+    
 
-    COOKIE_AGE = 259200
+    
 
 
     def __getattribute__(self, name: str) -> Any:

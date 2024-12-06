@@ -14,12 +14,10 @@ readme = "readme.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8"
-tortoise-orm = "*"
+
 uvicorn = "*"
-aerich = "*"
 asgiref = "*"
 anyio = "*"
-aiofiles = "*"
 itsdangerous = "*"
 
 [tool.poetry.scripts]

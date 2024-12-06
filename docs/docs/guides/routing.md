@@ -186,9 +186,36 @@ Route path: /user/{userId}(\d+)
 Request URL: http://localhost:3000/user/42
 req.params: {"userId": "42"}
 ```
+# Routers in Nexios
 
+In Nexios, routers provide a way to better organize and manage your routes by grouping related routes together. Instead of defining routes directly in the main app, you can create routers to handle specific areas of your application, making your code more modular and easier to maintain.
+
+A router is essentially a container for routes, which allows you to group routes based on functionality, and then you can register them with your app.
 Response Methods  
 The methods on the response object in the table below can send a response to the client and end the request-response cycle. If none of these methods are invoked in a route handler, the client request will remain unresolved.
+
+# Creating a Router
+To create a router in Nexios, you'll need to use the `Router` class. This allows you to specify the route paths, methods, and handlers in a more structured way.
+
+Here is an example of how you can define and use a router in Nexios:
+
+```python
+from nexios.routers import Router
+from nexios import get_application
+app = get_application()
+router = Router(prefix = "/api") #prefix can be skipped
+app.mount_router(router)
+
+@app.route("/create")
+async def handler(request, response):
+    return response.send("Hello world")
+```
+If a request is i made to `/api/create` the above handler reponde with `Hello world`. 
+
+
+> The Router instance also contain the same routing method as the app e.g `app.add_route` ,`@app.route`,`@app.get` . e.t.c 
+
+# Nexios Response method guide
 
 | **Method**              | **Description**                                                                                     | **Parameters**                                                                                                                                              | **Returns**                                           | **Use Case**                                                                                                                                                         |
 |-------------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|

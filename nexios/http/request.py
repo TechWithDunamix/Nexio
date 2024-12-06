@@ -5,7 +5,13 @@ from .cookies_parser import parse_cookies
 from .parsers import parse_multipart_data,parse_form_urlencoded
 from ..structs import URL,State,Headers
 from .mixins import RequestValidatonMixin
-
+SERVER_PUSH_HEADERS_TO_COPY = {
+    "accept",
+    "accept-encoding",
+    "accept-language",
+    "cache-control",
+    "user-agent",
+}
 
 class ClientDisconnect(Exception):
     """Custom exception to indicate client disconnection."""
@@ -227,3 +233,11 @@ class Request(HTTPConnection, RequestValidatonMixin):
         """Checks if the client has disconnected."""
         message = await self._receive()
         return message.get("type") == "http.disconnect"
+
+    async def send_push_promise(self, path: str) -> None:
+        if "http.response.push" in self.scope.get("extensions", {}):
+            raw_headers: list[tuple[bytes, bytes]] = []
+            for name in SERVER_PUSH_HEADERS_TO_COPY:
+                for value in self.headers.getlist(name):
+                    raw_headers.append((name.encode("latin-1"), value.encode("latin-1")))
+            await self._send({"type": "http.response.push", "path": path, "headers": raw_headers})

@@ -1,7 +1,6 @@
 from nexios.middlewares.base import BaseMiddleware
 from .signed_cookies import SignedSessionManager
 from .file import FileSessionManager
-from .db import DBSessionManager
 from nexios.http.request import Request
 from nexios.http.response import NexioResponse
 class SessionMiddleware(BaseMiddleware):
@@ -11,7 +10,6 @@ class SessionMiddleware(BaseMiddleware):
         session_cookie_name = self.config.SESSION_COOKIE_NAME or "session_id"
         managers = {
             "file":FileSessionManager,
-            "db":DBSessionManager,
             "cookies":SessionMiddleware
         }    
         manager_config = self.config.SESSION_MANAGER 

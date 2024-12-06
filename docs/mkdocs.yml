@@ -1,8 +1,8 @@
 site_name: Nexios
 site_description: A modern backend framework for building scalable and efficient web applications.
 site_author: Dunamis
-site_url: https://nexios.example.com
-repo_url: https://github.com/techwithdunamix/nexios
+site_url: https://Nexioss.example.com
+repo_url: https://github.com/techwithdunamix/Nexioss
 
 # Theme Configuration
 theme:
@@ -11,15 +11,30 @@ theme:
   favicon: logo.png
   logo: logo.png
   palette:
-    - scheme: light
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: deep-orange
       accent: deep-orange
       toggle:
-        icon: material/brightness-1 
+        icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: dark
-      primary: deep-orange
-      accent: deep-orange
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  # palette:
+  #   - scheme: light
+  #     primary: deep-orange
+  #     accent: deep-orange
+  #     toggle:
+  #       icon: material/brightness-1 
+  #       name: Switch to dark mode
+  #   - scheme: dark
+  #     primary: deep-orange
+  #     accent: deep-orange
   syntax:
     highlight: true 
   toggle:
@@ -39,26 +54,24 @@ theme:
 
 # Navigation Structure
 nav:
-  - Home: index.md
+  - Nexios : index.md
   - Getting Started:
       - Introduction: introduction.md
       - Installation: installation.md
       - Hello World : hello_world.md
       - Routing : basic_routing.md
       
+      
   - Guide:
     - guides/routing.md
-    - guides/nexio-request.md
-    - guides/nexio-response.md
-  - Core Features:
-      - Request Object: core-features/request-object.md
-      - Response Object: core-features/response-object.md
-      - Middleware: core-features/middleware.md
-      - Router: core-features/router.md
-      - Routing: core-features/routing.md
-      - WebSocket Support: core-features/websocket.md
-      - Session Management: core-features/session-manager.md
-      - Validators: core-features/validators.md
+    - guides/Nexios-request.md
+    - guides/Nexios-response.md
+    - Middleware : middlewares.md
+    - Sessions : sessions.md
+    - Nexios Validators : validators.md
+    - WebSocket Support: websocket.md
+
+  
   - Integrations:
       - Tortoise ORM: integrations/tortoise-orm.md
       - Redis: integrations/redis.md
@@ -69,14 +82,11 @@ nav:
       - REST API with ORM: tutorials/rest-api.md
       - Authentication System: tutorials/authentication.md
   - API Reference:
-      - Nexios API: api-reference/nexios.md
+      - Nexioss API: api-reference/Nexioss.md
       - Middleware API: api-reference/middleware.md
       - Router API: api-reference/router.md
       - Validators API: api-reference/validators.md
-  - Advanced Guides:
-      - Custom Middleware: advanced/custom-middleware.md
-      - Extending the Router: advanced/extending-router.md
-      - Writing Custom Validators: advanced/custom-validators.md
+ 
 
 # Plugins
 plugins:
@@ -109,7 +119,7 @@ markdown_extensions:
 extra:
   seo:
     description: A detailed description of your website for SEO.
-    keywords: nexios, nexios python, dunamis, nexios backend
+    keywords: Nexioss, Nexioss python, dunamis, Nexioss backend
   generator: false
   version:
     provider: mike
@@ -140,3 +150,5 @@ extra:
             Thanks for your feedback! Help us improve this page by
             using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
 copyright: Copyright &copy; 2024 Techwithdunamix
+extra_javascript:
+  - js/theme-toggle.js

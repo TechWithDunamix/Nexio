@@ -55,8 +55,9 @@ class Schema(BaseSchema):
                     defined_validator = getattr(self,f"validate_{field_name}")
                     if callable(defined_validator):
                         value = await defined_validator(value)
-                except AttributeError:
-                    pass
+                except (ValidationError, ValueError) as e:
+                    self._validation_errors[field_name] = descriptor._validation_errors
+                    
                 self._validated_data[field_name] = value
             except ValidationError as e:
                 setattr(self,"error",True)

@@ -72,6 +72,7 @@ class SignedSessionManager(BaseSessionInterface):
             self._session_cache = {}
 
     def clear(self):
+        self.modified = True
         self._session_cache.clear()
 
     

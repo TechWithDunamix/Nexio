@@ -1,133 +1,60 @@
-Here's an introductory markdown documentation for Nexios based on your questions and answers:
-
----
+![Nexio Logo](logo.png)
 
 
 # Nexios Documentation
 [![GitHub stars](https://img.shields.io/github/stars/techwithdunamix/nexios.svg?style=social)](https://github.com/techwithdunamix/nexios)
 [![GitHub forks](https://img.shields.io/github/forks/techwithdunamix/nexios.svg?style=social)](https://github.com/techwithdunamix/nexios)
 [![GitHub issues](https://img.shields.io/github/issues/techwithdunamix/nexios.svg)](https://github.com/techwithdunamix/nexios/issues)
-## Introduction
-Nexios is a Python-based ASGI backend framework designed to provide flexibility, speed, and utility for building asynchronous web applications. It mimics the structure of Express.js, making it easy for developers familiar with JavaScript and Node.js to transition to Python. Nexios is designed with both Object-Oriented Programming (OOP) and Functional Programming (FP) principles, giving developers the choice to approach their code in the way that suits them best.
 
-Nexios provides built-in utilities like middleware support, routing, session management, WebSocket handling, and asynchronous operations, making it a perfect fit for modern, fast-paced backend development. It also comes with automatic support for Tortoise ORM, making it easier to interact with databases in a non-blocking way.
+### Nexios Framework Documentation
 
-## Features
+---
+```py
 
-### 1. **Installation**
-To get started with Nexios, follow these steps:
+from nexios import get_application()
 
-1. **Create a new project directory**:
-   ```bash
-   mkdir your_project_name
-   cd your_project_name
-   ```
+app = get_application()
 
-2. **Set up a virtual environment**:
-   ```bash
-   python -m venv venv
-   ```
-
-3. **Activate the virtual environment**:
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - On Linux/Mac:
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. **Install Nexios**:
-   ```bash
-   pip install nexios
-   ```
-
-5. **Verify the installation**:
-   ```bash
-   python -m nexios
-   ```
-
-You should see the following output, confirming the installation:
-```
-    🚀 Welcome to Nexios 🚀
-      The sleek ASGI Backend Framework
-      Version: X.X.X
+@app.route("/endpoint",methods = ['get'])
+async def api_handler(request, response):
+    return response.status(200).json({"text":"Welcome to Nexios"})
 ```
 
-### 2. **Hello World Example**
+## What is Nexios?
 
-Create a simple "Hello World" application using Nexios:
+**Nexios** is a Python-based backend framework designed for building high-performance, stand-alone, production-grade web applications. With an opinionated approach to the Python ecosystem and its third-party libraries, Nexios ensures a streamlined development experience, requiring minimal configuration.
 
-```python
-from nexios import NexioApp
+You can use Nexios to create Python applications that run effortlessly using standalone commands or in a WSGI/ASGI server environment for traditional deployments.
 
-app = NexioApp()
+---
 
-@app.route("/api/endpoint", methods=["GET"])
-async def endpoint_handler(request, response):
-    return response.json({"text": "Welcome to Nexios"})
-```
+## Key Goals
 
-Run the application with the command:
-```bash
-uvicorn main:app --reload
-```
+1. **Accelerate Development:**  
+   Provide a radically faster and widely accessible getting-started experience for all Python backend development.
 
-### 3. **Routing**
-Nexios supports routing in both decorator and router styles.
+2. **Opinionated but Flexible:**  
+   Be opinionated out of the box but adapt seamlessly as your requirements evolve beyond the defaults.
 
-#### Using Decorators:
-```python
-@app.route("/api/endpoint", methods=["GET"])
-async def endpoint_handler(request, response):
-    return response.send("Hello World")
-```
+3. **Built-In Non-Functional Features:**  
+   Offer a comprehensive range of non-functional capabilities common to modern web applications, such as:  
+   - Middleware support  
+   - Security  
+   - Metrics and health checks  
+   - Configuration management and externalized settings  
 
-#### Using Routers:
-```python
-from nexios import Router
+4. **No Code Generation or Complexity:**  
+   No reliance on code generation, and zero mandatory YAML/XML configurations—keeping everything Pythonic and developer-friendly.
 
-r = Router(prefix="/api")
-r.add_route("/endpoint", handler=endpoint_handler)
-```
+---
 
-Routes can be defined with different HTTP methods like `GET`, `POST`, `PUT`, `DELETE`, etc. The handler functions will respond accordingly based on the request method.
 
-### 4. **Middleware**
-Nexios allows you to define middleware that runs before or after a request is processed.
+## Why Choose Nexios?
 
-Example of an authentication middleware:
-```python
-class AuthMiddleware(BaseMiddleware):
-    async def before_request(self, req, res):
-        token = req.headers.get("Authorization")
-        if not token:
-            return res.json({"error": "Unauthorized"}, status=401)
-        
-        user = await verify_token(token)
-        req.state.user = user
-        await super().before_request(req, res)
-```
+- **Super Fast:** Optimized for speed and efficiency, leveraging Python’s async capabilities.  
+- **Middleware Support:** Easily extend functionality with powerful middleware integration.  
+- **Minimal Configuration:** Start with sensible defaults while retaining complete control over customizations.  
+- **Scalable:** Designed to support projects of any size, from MVPs to enterprise-grade systems.
 
-This middleware checks for a token in the request header and verifies it before proceeding to the handler.
+Nexios is your go-to choice for building high-performing, Pythonic web applications with minimal fuss and maximum productivity.  
 
-### 5. **Asynchronous Support**
-Nexios is built on top of ASGI, which means it's fully asynchronous and capable of handling multiple concurrent requests without blocking. This is especially useful for I/O-bound operations such as database queries, file handling, and API calls, allowing for more efficient performance compared to traditional synchronous frameworks.
-
-By using `async` and `await` keywords, you can make non-blocking calls to databases (like Tortoise ORM) and external APIs while handling incoming HTTP requests.
-
-### 6. **WebSocket Support**
-Nexios comes with built-in WebSocket support, allowing you to handle real-time communication in your application easily. This feature can be useful for building chat applications, live notifications, or other real-time features.
-
-### 7. **Session Management**
-Nexios supports both file-based and signed cookie sessions. It also has a built-in session manager that helps with storing and retrieving session data securely. This is useful for maintaining user states, especially in authentication systems.
-
-## Conclusion
-Nexios is a powerful and flexible framework that allows developers to build modern web applications efficiently. It leverages the power of ASGI for asynchronous operations, offers easy-to-use routing and middleware systems, and comes with built-in utilities like WebSocket and session management to help you develop faster and smarter. Whether you prefer Object-Oriented or Functional Programming, Nexios has you covered, making it a versatile choice for backend development.
-
-For more detailed information, refer to the complete [Nexios documentation](#).
-
---- 
-
-This markdown provides an introduction to Nexios, covering installation, basic routing, middleware, asynchronous support, and other key features of the framework. Let me know if you want to add more details or need further customization!
